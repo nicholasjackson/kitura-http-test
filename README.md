@@ -1,6 +1,8 @@
 # kitura-http-test
 Swift package to make testing handlers in the Kitura framework super easy.
 
+[![CircleCI](https://circleci.com/gh/nicholasjackson/kitura-http-test.svg?style=svg)](https://circleci.com/gh/nicholasjackson/kitura-http-test)
+
 This example implements two new testing objects which are influenced by Go's net/httptest package.  
 Sources/HTTPTest contains two classes:  
 * [Request.swift](https://github.com/nicholasjackson/KituraTesting/blob/master/Sources/HTTPTest/Request.swift) - a stubbed instance of ServerRequest   
