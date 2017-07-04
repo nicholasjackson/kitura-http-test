@@ -1,0 +1,42 @@
+version: 2
+
+defaults: &defaults
+  working_directory: /tmp/KituraHTTPTest
+  docker:
+    - image: ibmcom/kitura-ubuntu
+
+jobs:
+  build:
+    <<: *defaults
+
+    steps:
+      - checkout
+
+      - run: 
+          name: Build Application
+          command: make build
+      
+      - persist_to_workspace:
+          root: /tmp/
+          paths:
+            - KituraHTTPTest
+
+  unit_test:
+    <<: *defaults
+
+    steps:
+      - attach_workspace:
+          at: /tmp
+
+      - run: 
+          name: Unit Tests
+          command: make test
+
+workflows:
+  version: 2
+  build_test_and_deploy:
+    jobs:
+      - build
+      - unit_test:
+          requires:
+            - build
