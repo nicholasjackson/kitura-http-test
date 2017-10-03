@@ -1,12 +1,16 @@
-// swift-tools-version:3.1
-
+// swift-tools-version:4.0
 import PackageDescription
 
 let package = Package(
     name: "KituraHTTPTest",
     
     dependencies: [
-        .Package(url: "https://github.com/IBM-Swift/Kitura-net.git", majorVersion: 1, minor: 7),
-        .Package(url: "https://github.com/IBM-Swift/SwiftyJSON.git", majorVersion: 16)
+        .package(url: "https://github.com/IBM-Swift/Kitura-net.git", from: "1.7.0"),
+        .package(url: "https://github.com/IBM-Swift/SwiftyJSON.git", from: "16.0.0")
+    ],
+    
+    targets: [
+        .target(name: "KituraHTTPTest", dependencies: ["KituraNet", "SwiftyJSON"]),
+        .testTarget(name: "KituraHTTPTestTests", dependencies: ["KituraHTTPTest"])
     ]
 )
